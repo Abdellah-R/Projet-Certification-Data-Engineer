@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "your-resource-group-name"
-    storage_account_name = "yourstorageaccount"
-    container_name       = "yourcontainer"
-    key                  = "terraform.tfstate"
+    resource_group_name   = "rg-aramdan-infra-frc"
+    storage_account_name  = "adlsaramdantfstate"
+    container_name        = "terraform-tfstate"
+    key                   = "terraform.tfstate"
   }
 }
 
@@ -23,4 +23,10 @@ provider "azurerm" {
   client_id       = var.client_id
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
+}
+
+provider "azuread" {
+  tenant_id     = var.tenant_id
+  client_id     = var.client_id
+  client_secret = var.client_secret
 }
