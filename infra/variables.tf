@@ -7,10 +7,17 @@ variable "subscription_id" {
 }
 
 variable "tenant_id" {
-  description = "Azure AD tenant ID"
+  description = "Azure application (Service Principal) tenant ID"
   type        = string
   sensitive   = true
 }
+
+variable "object_id" {
+  description = "Azure application (Service Principal) object ID"
+  type        = string
+  sensitive   = true
+}
+
 
 variable "client_id" {
   description = "Azure application (Service Principal) ID"
