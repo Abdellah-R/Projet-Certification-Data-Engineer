@@ -1,7 +1,7 @@
 resource "azurerm_storage_account" "adlsgen2" {
     name                     = "adls${var.project_name}${terraform.workspace}"
-    resource_group_name      = var.resource_group_name
-    location                 = var.resource_group_location
+    resource_group_name      = azurerm_resource_group.rg.name
+    location                 = azurerm_resource_group.rg.location
     account_replication_type = local.storage_account[terraform.workspace]["account_replication_type"]
     account_tier             = local.storage_account[terraform.workspace]["account_tier"]
     account_kind             = "StorageV2"
