@@ -1,6 +1,6 @@
 # 📜 Projet-Certification-Data-Engineer
 
-![Status](https://img.shields.io/badge/status-init-lightgrey)
+![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Cloud](https://img.shields.io/badge/cloud-Azure-0078D4?logo=microsoft-azure)
 ![IaC](https://img.shields.io/badge/IaC-Terraform-5C4EE5?logo=terraform)
 
