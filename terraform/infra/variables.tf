@@ -1,4 +1,14 @@
 ############################
+# Global
+############################
+
+variable "project_name" {
+  description = "Project name, used as common keyword to naming the resources"
+  type        = string
+}
+
+
+############################
 # Authentication (Provider)
 ############################
 
