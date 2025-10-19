@@ -18,3 +18,27 @@ resource "null_resource" "upload_files" {
         azurerm_storage_container.container
     ]
 }
+
+resource "null_resource" "export_variables" {
+
+#   triggers = {
+#     always_run = timestamp()  # Uncomment to force re-execution on each `terraform apply`
+#   }
+    
+  provisioner "local-exec" {
+    command = <<EOT
+      TF_WORKSPACE=${terraform.workspace}
+      DATABRICKS_HOST=${azurerm_databricks_workspace.databricks_workspace.workspace_url}
+      DATABRICKS_RESOURCE_ID=${azurerm_databricks_workspace.databricks_workspace.id}
+      APPLICATION_ID=${azuread_application.app.client_id}
+      cd ./scripts/
+      bash update_tfvars.sh $TF_WORKSPACE $DATABRICKS_HOST $DATABRICKS_RESOURCE_ID $APPLICATION_ID
+    EOT
+  }
+
+  depends_on = [
+    azurerm_storage_account.adlsgen2,
+    azurerm_storage_container.container,
+    azuread_application.app
+  ]
+}
