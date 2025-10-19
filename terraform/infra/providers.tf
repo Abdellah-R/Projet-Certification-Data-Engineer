@@ -24,3 +24,16 @@ provider "azurerm" {
   client_secret   = var.client_secret
   tenant_id       = var.tenant_id
 }
+
+provider "azurerm" {
+  alias   = "cli_user"
+  use_cli = true
+
+  features {}
+}
+
+provider "azuread" {
+  alias   = "cli_user"
+  use_cli = true
+}
+
