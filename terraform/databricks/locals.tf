@@ -1,0 +1,7 @@
+locals {
+    
+    tags = {
+        "dev": "development"
+    }
+
+}
