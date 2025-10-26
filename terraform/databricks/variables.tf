@@ -65,3 +65,8 @@ variable "databricks_resource_id" {
   type        = string
   description = "Resource ID of the Databricks workspace"
 }
+
+variable "application_id" {
+  type        = string
+  description = "Application (Client) ID of Service Principal for Databricks"
+}
