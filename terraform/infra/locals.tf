@@ -11,4 +11,9 @@ locals {
         }
     }
     
+    databricks = {
+        dev = {
+            "sku": "standard"
+        }
+    }
 }

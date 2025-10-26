@@ -4,7 +4,11 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.46.0"
+      version = "4.43.0"
+    }
+
+    databricks = {
+      source  = "databricks/databricks"
     }
   }
 
@@ -25,15 +29,7 @@ provider "azurerm" {
   tenant_id       = var.tenant_id
 }
 
-provider "azurerm" {
-  alias   = "cli_user"
-  use_cli = true
-
-  features {}
+provider "databricks" {
+  host                        = var.databricks_host
+  azure_workspace_resource_id = var.databricks_resource_id
 }
-
-provider "azuread" {
-  alias   = "cli_user"
-  use_cli = true
-}
-

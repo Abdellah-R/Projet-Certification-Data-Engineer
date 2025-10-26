@@ -8,14 +8,40 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled    = true
 
   sku_name = "standard"
-}
+  
+  # SP Terraform
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
 
-resource "azurerm_key_vault_access_policy" "kv_access_policy" {
-  key_vault_id            = azurerm_key_vault.kv.id
-  tenant_id               = data.azurerm_client_config.current.tenant_id
-  object_id               = data.azurerm_client_config.current.object_id
+    key_permissions = [
+      "Get",
+    ]
 
-  key_permissions         = [ "Get" ]
-  secret_permissions      = ["Get", "List", "Set"]
-  certificate_permissions = [ "Get" ]
+    secret_permissions = [
+      "Get", "List", "Set", "Delete", "Recover"
+    ]
+
+    storage_permissions = [
+      "Get",
+    ]
+  }
+  
+  # Admin
+  access_policy {
+    tenant_id = data.azurerm_client_config.azurerm_cli_user.tenant_id
+    object_id = data.azurerm_client_config.azurerm_cli_user.object_id
+
+    key_permissions = [
+      "Get",
+    ]
+
+    secret_permissions = [
+      "Get", "List", "Set", "Delete", "Recover", "Backup", "Restore"
+    ]
+
+    storage_permissions = [
+      "Get",
+    ]
+  }
 }
